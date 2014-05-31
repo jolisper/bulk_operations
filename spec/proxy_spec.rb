@@ -31,7 +31,26 @@ describe BulkOperations::UnorderedBulkProxy do
       it "raise OperationStackEmptyError" do
         lambda { bulk.execute }.must_raise BulkOperations::OperationStackEmptyError
       end
+
     end
+
+    describe "when the stack is NOT empty" do
+      before do
+        @bulk = BulkOperations.unordered_bulk(ProxiedObject.new)
+        @bulk.operation_1
+      end
+
+      it "returns a hash with the results of operation executions" do
+        @bulk.execute.must_be_instance_of Hash
+      end
+
+      it "the result hash has a key/value with the state and result of the operation" do
+        result = @bulk.execute
+        result.must_equal( { operation_1: { state: :ok, result: 2 } } )
+      end
+
+    end
+
   end
 
 end
