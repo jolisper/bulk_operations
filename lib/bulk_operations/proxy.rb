@@ -30,19 +30,22 @@ module BulkOperations
 
       @operation_stack.each do |operation|
         name, *args, block = *operation
-        puts "\n ***** name: #{name}, args: #{args}, block: #{block}"
         threads << spawn_thread(name, args, block, result)
       end
 
       threads.each { |thread| thread.join }
 
-      result
+      StructResult.new result
     end
 
     def spawn_thread(name, args, block, result)
       thread = Thread.new do
-        call_result = @proxied_object.send(name, *args)
-        result[name] = { state: :ok, result: call_result }        
+        begin
+          call_result = @proxied_object.send(name, *args)
+          result[name] = { ok: true, result: call_result }
+        rescue => exception
+          result[name] = { ok: false, result: exception }
+        end
       end
 
       thread

@@ -41,12 +41,35 @@ describe BulkOperations::UnorderedBulkProxy do
       end
 
       it "returns a hash with the results of operation executions" do
-        @bulk.execute.must_be_instance_of Hash
+        @bulk.execute.must_be_instance_of BulkOperations::StructResult
       end
 
-      it "the result hash has a key/value with the state and result of the operation" do
+      it "the result hash has for the operation has ok: = true" do
         result = @bulk.execute
-        result.must_equal( { operation_1: { state: :ok, result: 2 } } )
+        result.operation_1.ok.must_equal true
+      end
+
+      it "the result hash has for the operation has ok: = true" do
+        result = @bulk.execute
+        result.operation_1.result.must_equal 2
+      end
+
+    end
+
+    describe "when an operation raise an exception" do
+      before do
+        @bulk = BulkOperations.unordered_bulk(ProxiedObject.new)
+        @bulk.raise_exception
+      end
+
+      it "the result hash has for the operation has ok: = false" do
+        result = @bulk.execute
+        result.raise_exception.ok.must_equal false
+      end
+
+      it "the result hash has for the exception throwed" do
+        result = @bulk.execute
+        result.raise_exception.result.must_be_instance_of StandardError
       end
 
     end

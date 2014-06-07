@@ -5,4 +5,9 @@ class ProxiedObject
   
   def operation_2
   end
+
+  def raise_exception
+    raise StandardError
+  end
+
 end
