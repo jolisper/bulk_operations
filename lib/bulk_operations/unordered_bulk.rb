@@ -11,7 +11,7 @@ module BulkOperations
         threads << spawn_thread(name, args, block, result)
       end
 
-      threads.each { |thread| thread.join }
+      threads.each(&:join)
 
       StructResult.new result
     end
@@ -19,7 +19,7 @@ module BulkOperations
     def spawn_thread(name, args, block, result)
       thread = Thread.new do
         begin
-          call_result = @proxied_object.send(name, *args)
+          call_result = @proxied_object.send(name, *args, &block)
           result[name] = { ok: true, result: call_result }
         rescue => exception
           result[name] = { ok: false, result: exception }
