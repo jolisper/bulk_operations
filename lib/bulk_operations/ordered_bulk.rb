@@ -4,8 +4,6 @@ module BulkOperations
       result = Hash.new
       fibers = []
 
-      @operation_stack.size
-
       @operation_stack.each do |operation|
         name, *args, block = *operation
         fibers << create_fiber(name, args, block, result)

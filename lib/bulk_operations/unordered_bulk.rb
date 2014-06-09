@@ -4,8 +4,6 @@ module BulkOperations
       result = Hash.new
       threads = []
 
-      @operation_stack.size
-
       @operation_stack.each do |operation|
         name, *args, block = *operation
         threads << spawn_thread(name, args, block, result)
