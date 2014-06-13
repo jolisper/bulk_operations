@@ -17,7 +17,7 @@ module BulkOperations
     def create_fiber(name, args, block, result)
       fiber = Fiber.new do
         begin
-          call_result = @proxied_object.send(name, *args, &block)
+          call_result = @proxied_object.__send__(name, *args, &block)
           result[name] = { ok: true, result: call_result }
         rescue => exception
           result[name] = { ok: false, result: exception }
