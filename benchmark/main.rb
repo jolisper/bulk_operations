@@ -70,7 +70,8 @@ ordered_bulk.yaml_to_object3(my_object.to_yaml)
 ordered_bulk.object_to_yaml3(my_object)
 ordered_bulk.yaml_to_object4(my_object.to_yaml)
 ordered_bulk.object_to_yaml4(my_object)
-
+ordered_bulk.yaml_to_object5(my_object.to_yaml)
+ordered_bulk.object_to_yaml5(my_object)
 
 ## Unordered Bulk
 my_object = MyObject.new
@@ -85,17 +86,33 @@ unordered_bulk.yaml_to_object3(my_object.to_yaml)
 unordered_bulk.object_to_yaml3(my_object)
 unordered_bulk.yaml_to_object4(my_object.to_yaml)
 unordered_bulk.object_to_yaml4(my_object)
+ordered_bulk.yaml_to_object5(my_object.to_yaml)
+ordered_bulk.object_to_yaml5(my_object)
+
+bench_mark = Proc.new do |cant_objects|
+  puts "----------------------------------------"
+  puts "Marshall/Unmarshall #{cant_objects} objects\n\n"
+
+  Benchmark.bm(15) do |b|
+    b.report("Ordered Bulk") do
+      cant_objects.times { ordered_bulk.execute } 
+    end
+    
+    b.report("Unordered Bulk") do
+      cant_objects.times { unordered_bulk.execute } 
+    end
+  end
+
+  puts "----------------------------------------\n"
+end
+
+# Rehersal
+bench_mark.call 1_000
+
 
 ## Benchmarks
-n = 5_000
-
-Benchmark.bmbm(15) do |b|
-  b.report("Ordered Bulk") do
-    n.times { ordered_bulk.execute } 
-  end
-  
-  b.report("Unordered Bulk") do
-    n.times { unordered_bulk.execute } 
-  end
+5.times do |i|
+  bench_mark.call 1_000 * (i + 1)  
 end
+
 
