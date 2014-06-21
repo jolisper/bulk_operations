@@ -70,12 +70,8 @@ ordered_bulk.yaml_to_object3(my_object.to_yaml)
 ordered_bulk.object_to_yaml3(my_object)
 ordered_bulk.yaml_to_object4(my_object.to_yaml)
 ordered_bulk.object_to_yaml4(my_object)
-<<<<<<< HEAD
 ordered_bulk.yaml_to_object5(my_object.to_yaml)
 ordered_bulk.object_to_yaml5(my_object)
-=======
-
->>>>>>> e1a9fa8f0b1eeb6854d4b5495501762e771c1351
 
 ## Unordered Bulk
 my_object = MyObject.new
@@ -90,7 +86,6 @@ unordered_bulk.yaml_to_object3(my_object.to_yaml)
 unordered_bulk.object_to_yaml3(my_object)
 unordered_bulk.yaml_to_object4(my_object.to_yaml)
 unordered_bulk.object_to_yaml4(my_object)
-<<<<<<< HEAD
 ordered_bulk.yaml_to_object5(my_object.to_yaml)
 ordered_bulk.object_to_yaml5(my_object)
 
@@ -120,19 +115,4 @@ bench_mark.call 1_000
   bench_mark.call 1_000 * (i + 1)  
 end
 
-=======
-
-## Benchmarks
-n = 5_000
-
-Benchmark.bmbm(15) do |b|
-  b.report("Ordered Bulk") do
-    n.times { ordered_bulk.execute } 
-  end
-  
-  b.report("Unordered Bulk") do
-    n.times { unordered_bulk.execute } 
-  end
-end
->>>>>>> e1a9fa8f0b1eeb6854d4b5495501762e771c1351
 
