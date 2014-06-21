@@ -1,6 +1,6 @@
-# BulkMethods
+# BulkOperations
 
-TODO: Write a gem description
+Run your objects methods in a multithreaded and bulked way
 
 ## Installation
 
