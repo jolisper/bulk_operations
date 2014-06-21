@@ -1,5 +1,6 @@
 # BulkOperations
 
+[![Gem Version](https://badge.fury.io/rb/bulk_operations.svg)](http://badge.fury.io/rb/bulk_operations)
 [![Build Status](https://travis-ci.org/jolisper/bulk_operations.svg?branch=master)](https://travis-ci.org/jolisper/bulk_operations)
 
 Run your objects methods in a multi-threaded and bulked way.
