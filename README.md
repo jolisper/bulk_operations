@@ -1,5 +1,7 @@
 # BulkOperations
 
+[![Build Status](https://travis-ci.org/jolisper/bulk_operations.svg?branch=master)](https://travis-ci.org/jolisper/bulk_operations)
+
 Run your objects methods in a multi-threaded and bulked way.
 
 ## Motivation
@@ -72,3 +74,4 @@ Bulks doesn't care about the shared mutable state between your operations (at le
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
