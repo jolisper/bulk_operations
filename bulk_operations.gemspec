@@ -6,11 +6,11 @@ require 'bulk_operations/version'
 Gem::Specification.new do |spec|
   spec.name          = "bulk_operations"
   spec.version       = BulkOperations::VERSION
-  spec.authors       = ["Jorge L Pérez"]
+  spec.authors       = ["Jorge Luis Pérez"]
   spec.email         = ["jolisper@gmail.com"]
   spec.description   = %q{Run your objects methods in a multithreaded and bulked way}
-  spec.summary       = %q{Run your objects methods in a multithreaded and bulked way}
-  spec.homepage      = ""
+  spec.summary       = %q{Motivation: you want to define different operations in a single object and you want to run them as a bulk and in a unordered (asynchronous) way. Also, you want to run them as a sequence, in the same order you called them.}
+  spec.homepage      = "https://github.com/jolisper/bulk_operations"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
